@@ -18,5 +18,7 @@ public interface Services {
     public Personajes buscar(Personajes personajes);
     
         public List<Personajes> getPersonajes();
+        
+        public Personajes getPersonajesByStatus(String status);
 
 }

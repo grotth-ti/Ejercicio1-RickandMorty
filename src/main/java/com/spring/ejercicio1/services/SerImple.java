@@ -6,6 +6,7 @@ package com.spring.ejercicio1.services;
 
 import com.spring.ejercicio1.Dao.PersonajeDao;
 import com.spring.ejercicio1.character.Personajes;
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,8 @@ public class SerImple implements Services {
 
     @Autowired
     PersonajeDao personajeDao;
+    
+      static List<Personajes> personajes = new ArrayList<>();
 
     @Override
     @Transactional(readOnly = true)
@@ -33,6 +36,16 @@ public class SerImple implements Services {
     @Transactional
     public void eliminar(Personajes personajes) {
         personajeDao.delete(personajes);
+    }
+    @Override
+    @Transactional(readOnly=true)
+    public Personajes getPersonajesByStatus(String status){
+        for (Personajes personajes : personajes){
+            if(personajes.getStatus().equalsIgnoreCase(status)){
+                return personajes;
+            }
+        }
+        return null;
     }
 
     @Override
